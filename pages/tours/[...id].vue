@@ -1,5 +1,5 @@
 <template>
-    <page-title :page="{name: 'Туры', path: '/tours'}" name="Шарм-эш-Шейх" :index="2" />
+    <page-title :page="{name: $t('page_name_2'), path: '/tours'}" name="Шарм-эш-Шейх" :index="2" />
     <section-two />
 </template>
 

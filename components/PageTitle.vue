@@ -9,7 +9,7 @@
         <div class="gradient absolute top-0 left-0 w-full h-full"></div>
         <div class="my_container">
             <div class="flex items-center justify-center gap-12 relative">
-                <NuxtLink to="/" class="text-white font-interfaces md:text-18">Home</NuxtLink>
+                <NuxtLink to="/" class="text-white font-interfaces md:text-18">{{ $t('page_name_1') }}</NuxtLink>
 
                 <p v-if="page" class="text-white font-interfaces md:text-18">/</p>
                 <NuxtLink v-if="page" :to="page.path" class="text-white font-interfaces md:text-18 cursor-pointer">{{ page.name }}</NuxtLink>

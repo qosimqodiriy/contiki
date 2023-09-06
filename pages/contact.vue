@@ -1,5 +1,5 @@
 <template>
-    <page-title name="Контакты" :index="4" />
+    <page-title :name="$t('page_name_4')" :index="4" />
     <section-one />
 </template>
 

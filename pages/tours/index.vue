@@ -1,5 +1,5 @@
 <template>
-    <page-title name="Туры" :index="1" />
+    <page-title :name="$t('page_name_2')" :index="1" />
     <section-one />
     <adventure-box />
 </template>

@@ -5,17 +5,17 @@
 
             <div class="flex items-center gap-50">
                 <div class="hidden md:flex items-center gap-30 lg:gap-40 2xl:gap-50">
-                    <NuxtLink to="/" class="text-18 font-interfaces text-white leading-130">Home</NuxtLink>
-                    <NuxtLink to="/tours" class="text-18 font-interfaces text-white leading-130">Туры</NuxtLink>
-                    <NuxtLink to="/about" class="text-18 font-interfaces text-white leading-130">О нас</NuxtLink>
-                    <NuxtLink to="/contact" class="text-18 font-interfaces text-white leading-130">Контакты</NuxtLink>
+                    <NuxtLink to="/" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_1') }}</NuxtLink>
+                    <NuxtLink to="/tours" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_2') }}</NuxtLink>
+                    <NuxtLink to="/about" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_3') }}</NuxtLink>
+                    <NuxtLink to="/contact" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_4') }}</NuxtLink>
                 </div>
 
                 <div class="flex items-center gap-16">
                     <div class="flex items-center gap-10 lg:gap-15 xl:gap-24">
-                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">Uz</p>
-                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">Ru</p>
-                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">En</p>
+                        <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('uz')" :class="$i18n.locale == 'uz' ? 'text-white' : 'text-grey_8 opacity-80'">Uz</p>
+                        <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('ru')" :class="$i18n.locale == 'ru' ? 'text-white' : 'text-grey_8 opacity-80'">Ru</p>
+                        <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('en')" :class="$i18n.locale == 'en' ? 'text-white' : 'text-grey_8 opacity-80'">En</p>
                     </div>
     
                     <div @click="burger = !burger" class="block md:hidden p-5 py-6 rounded-4 cursor-pointer active:bg-grey_64">
@@ -35,10 +35,10 @@
                 <p class="w-full text-20 text-center text-white font-prosto_one font-medium mb-56">Меню</p>
 
                 <div class="flex flex-col gap-16">
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/">Главная</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/tours">Туры</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/about">О нас</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/contact">Контакты</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/">{{ $t('page_name_1') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/tours">{{ $t('page_name_2') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/about">{{ $t('page_name_3') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/contact">{{ $t('page_name_4') }}</NuxtLink>
                 </div>
             </div>
         </div>
@@ -55,28 +55,13 @@ export default {
     },
 
     methods: {
-        // changeLang(lang, text) {
-        //     this.lang = false;
-        //     this.lang_value = text;
-        //     this.$i18n.locale = lang;
-        //     localStorage.setItem('language', lang);
-        // },
+        changeLang(lang) {
+            this.$i18n.locale = lang;
+            localStorage.setItem('language', lang);
+        },
     },
     
     mounted() {
-        // Tilni tekshirish
-        // if(localStorage.getItem('language') == 'uz') {
-        //     this.lang_value = `Ozbekcha`
-        // } else if(localStorage.getItem('language') == 'en') {
-        //     this.lang_value = `English`
-        // } else if(localStorage.getItem('language') == 'ru') {
-        //     this.lang_value = `Русский`
-        // } else {
-        //     this.lang_value = `Русский`
-        // }
-
-
-
         // Header anime
         let lastScrollTop = 105;
         let navbar = document.querySelector('#header')
@@ -105,37 +90,8 @@ export default {
 #header {
     width: 100%;
     transition: 0.5s;
-    transition-duration: 150;
+    transition-duration: 0.7s;
 }
-
-.logo_img {
-    filter: opacity(.5) drop-shadow(0 0 0 #3B2BB8);
-    -webkit-filter: opacity(.5) drop-shadow(0 0 0 #3B2BB8);
-}
-
-.lang_box {
-    cursor: pointer !important;
-}
-
-.language_box {
-    min-width: 100%;
-    transition: 0.5s;
-    /* left: 0; */
-    /* right: auto; */
-}
-
-.language_box.active {
-    opacity: 1;
-    z-index: 2;
-    transform: translateY(30px);
-}
-
-.language_box.not_active {
-    opacity: 0;
-    z-index: -1;
-    transform: translateY(0px);
-}
-
 
 
 
