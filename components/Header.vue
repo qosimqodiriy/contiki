@@ -1,45 +1,47 @@
 <template>
     <header id="header" class="fixed top-0 left-0 right-0 max-w-1920 mx-auto z-50 py-15 md:py-20 xl:py-24 2xl:py-30 border-b border-b-grey bg-black">
         <div class="my_container flex items-center justify-between">
-            <NuxtLink to="/" class="text-26 text-white">Logo</NuxtLink>
+            <NuxtLink to="/"><p class="text-26 font-prosto_one text-white">Logo</p></NuxtLink>
 
             <div class="flex items-center gap-50">
-                <div class="flex items-center gap-30 lg:gap-40 2xl:gap-50">
+                <div class="hidden md:flex items-center gap-30 lg:gap-40 2xl:gap-50">
                     <NuxtLink to="/" class="text-18 font-interfaces text-white leading-130">Home</NuxtLink>
                     <NuxtLink to="/tours" class="text-18 font-interfaces text-white leading-130">Туры</NuxtLink>
                     <NuxtLink to="/about" class="text-18 font-interfaces text-white leading-130">О нас</NuxtLink>
                     <NuxtLink to="/contact" class="text-18 font-interfaces text-white leading-130">Контакты</NuxtLink>
                 </div>
 
-                <div class="flex items-center gap-10 lg:gap-15 xl:gap-24">
-                    <p class="text-16 font-interfaces text-white leading-130">Uz</p>
-                    <p class="text-16 font-interfaces text-white leading-130">Ru</p>
-                    <p class="text-16 font-interfaces text-white leading-130">En</p>
+                <div class="flex items-center gap-16">
+                    <div class="flex items-center gap-10 lg:gap-15 xl:gap-24">
+                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">Uz</p>
+                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">Ru</p>
+                        <p class="text-16 font-interfaces cursor-pointer text-white leading-130">En</p>
+                    </div>
+    
+                    <div @click="burger = !burger" class="block md:hidden p-5 py-6 rounded-4 cursor-pointer active:bg-grey_64">
+                        <img class="w-22" src="../assets/icons/menu.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Burger -->
-        <!-- <div class="burger_div w-full min-h-screen fixed lg:hidden overflow-hidden top-0 right-0 z-40" :class="burger ? 'active' : ''">
+        <div class="burger_div w-full min-h-screen fixed lg:hidden overflow-hidden top-0 right-0 z-40" :class="burger ? 'active' : ''">
             <div @click="burger = false" class="w-full z-40 min-h-screen absolute top-0 left-0"></div>
-            <div class="w-80% burger_bg bg-Rich-Black z-50 min-h-screen absolute top-0 left-0 px-16 py-50">
+            <div class="w-80% burger_bg bg-Rich-Black z-50 min-h-screen absolute top-0 right-0 px-16 py-50">
 
-                <div class="flex items-center gap-20 mb-76">
-                    <img @click="burger = false" class="w-24 h-24" src="../assets/icons/close-white.png" alt="">
-                    <p class="w-full text-20 text-center font-medium pr-44">Меню</p>
-                </div>
+                <img @click="burger = false" class="w-28 h-28 absolute top-20 right-28" src="../assets/icons/close-white.png" alt="">
+                
+                <p class="w-full text-20 text-center text-white font-prosto_one font-medium mb-56">Меню</p>
 
                 <div class="flex flex-col gap-16">
-                    <NuxtLink @click="burger = false" class="font-interfaces text-18 font-semibold text-white" to="/about">{{ $t('page_name_2') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-18 font-semibold text-white" to="/holdings">{{ $t('page_name_3') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-18 font-semibold text-white" to="/gallery">{{ $t('page_name_4') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-18 font-semibold text-white" to="/news">{{ $t('page_name_5') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-18 font-semibold text-white" to="/contact">{{ $t('page_name_6') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/">Главная</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/tours">Туры</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/about">О нас</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-white" to="/contact">Контакты</NuxtLink>
                 </div>
-
-                
             </div>
-        </div> -->
+        </div>
     </header>
 </template>
 
@@ -138,10 +140,9 @@ export default {
 
 
 /* Burger css */
-
 .burger_div {
     transition: 0.5s ease;
-    transform: translateX(-1024px);
+    transform: translateX(768px);
 }
 
 .burger_div.active {

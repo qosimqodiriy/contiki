@@ -13,7 +13,7 @@ module.exports = {
       'white': '#fff',
       'grey': '#F5F5F7',
       'gren': '#009A10',
-      'blue': '#3C4BDC',
+      'blue': '#0E74AF',
       'black': '#020105',
       'orange': '#F08620',
       'purple': '#3B2BB8',
@@ -22,6 +22,7 @@ module.exports = {
       'grey_64': '#5D5D5F',
       'grey_80': '#353437',
       'dark_blue': '#1D234F',
+      'gren_text': '#B2D0E1',
 
       'colour': {
         'red': '#FF0000',
@@ -272,6 +273,8 @@ module.exports = {
       '370': '370px',
       '364': '364px',
       '400': '400px',
+      '450': '450px',
+      '467': '467px',
       '500': '500px',
       '600': '600px',
       '670': '670px',
@@ -487,6 +490,7 @@ module.exports = {
       '20': '20px',
       '24': '24px',
       '25': '25px',
+      '28': '28px',
       '30': '30px',
       '35': '35px',
       '40': '40px',

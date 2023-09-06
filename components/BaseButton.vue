@@ -37,6 +37,7 @@ const props = defineProps({
     position: relative;
     white-space: nowrap;
     background: #009A10;
+    background: linear-gradient();
 }
 
 .btn_text {
