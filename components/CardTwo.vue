@@ -1,6 +1,6 @@
 <template>
     <NuxtLink :to="`/tours/${item.id}`" class="card flex flex-col w-full aspect-2/3 relative border border-grey">
-        <p class="price text-12 md:text-14 xl:text-16 px-16 py-6 text-white font-interfaces absolute top-16 right-16 lg:top-20 lg:right-20 xl:top-24 xl:right-24">{{ item.price }}</p>
+        <p class="price text-12 md:text-14 xl:text-16 px-16 py-6 text-white font-interfaces absolute top-16 right-16 lg:top-20 lg:right-20 xl:top-24 xl:right-24">{{ formatPrice(item.price) }}</p>
         <img v-if="item.images && item.images[0] != null && item.images.length > 1" class="aspect-2/3 object-cover object-center" :src="`https://contiki.uz/files/${item.images[0]}`" alt="">
 
         <div class="absolute bottom-16 left-16 lg:bottom-20 lg:left-20 xl:bottom-24 xl:left-24">
@@ -20,6 +20,28 @@ export default {
             required: true,
         },
     },
+
+    methods: {
+        formatPrice(price) {
+            if (price < 0) {
+                return price;
+            } else {
+                let myArray = [];
+
+                let num = price.toString().split('');
+                num = num.reverse();
+
+                for (let i = 0; i < num.length; i++) {
+                    if (i > 0 && i % 3 == 0) {
+                        myArray.unshift(' ')
+                    }
+                    myArray.unshift(num.slice(i, i + 1))
+                }
+
+                return myArray.join('');
+            }
+        },
+    }
 }
 </script>
 

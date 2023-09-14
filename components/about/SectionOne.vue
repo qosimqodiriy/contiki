@@ -89,8 +89,8 @@ export default {
             const { offset = 0 } = this.$route.query
             const response = await axios.get('https://api.contiki.uz/user/advantages/all');
             this.loading = false;
-            console.log("Advantae");
-            console.log(response.data.body);
+            // console.log("Advantae");
+            // console.log(response.data.body);
             this.data = response.data.body.data;
             this.data_count = response.data.body.total;
         },

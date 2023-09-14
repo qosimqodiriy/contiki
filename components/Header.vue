@@ -1,7 +1,7 @@
 <template>
     <header id="header" class="fixed top-0 left-0 right-0 max-w-1920 mx-auto z-50 py-15 md:py-20 xl:py-24 2xl:py-30 border-b border-b-grey bg-black">
         <div class="my_container flex items-center justify-between">
-            <NuxtLink to="/"><p class="text-26 font-prosto_one text-white">Logo</p></NuxtLink>
+            <NuxtLink to="/"><img class="w-40 md:w-60 rounded-3" src="../assets/images/logo-white.png" alt=""></NuxtLink>
 
             <div class="flex items-center gap-50">
                 <div class="hidden md:flex items-center gap-30 lg:gap-40 2xl:gap-50">
