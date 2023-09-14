@@ -1,8 +1,8 @@
 <template>
     <div class="bg-white py-56 md:py-64 lg:py-74 xl:py-95 2xl:py-112">
         <div class="my_container">
-            <h2 class="text-32 lg:text-40 text-center font-prosto_one mb-8 text-black">Новости</h2>
-            <p class="text-18 text-center text-grey_64">Самые интересные новости и блог</p>
+            <h2 class="text-32 lg:text-40 text-center font-prosto_one mb-8 text-black">{{ $t('text_10') }}</h2>
+            <p class="text-18 text-center text-grey_64">{{ $t('text_11') }}</p>
             <img class="h-4 lg:h-5 2xl:h-6 mx-auto mt-16 lg:mt-24 mb-24 lg:mb-40" src="../../assets/images/line_img.png" alt="">
 
             <swiper 
@@ -34,10 +34,10 @@
                     },
                 }" 
                 :modules="modules" 
-                class="mySwiper">
+                class="article_swiper mySwiper">
 
-                <swiper-slide v-for="item in 7" :key="item">
-                    <news-card />
+                <swiper-slide v-for="item in data" :key="item.id">
+                    <news-card :item="item" />
                 </swiper-slide>
                 
 
@@ -59,6 +59,7 @@ export default {
         return {
             data: [],
             data_count: 0,
+            download: false,
         }
     },
     
@@ -78,15 +79,37 @@ export default {
             this.loading = true;
             const response = await axios.get('http://176.96.241.124:8081/user/article/all');
             this.loading = false;
-            console.log("Article/all");
-            console.log(response.data.body);
+            // console.log("Article/all");
+            // console.log(response.data.body);
             this.data = response?.data?.body?.data;
             this.data_count = response?.data?.body?.total;
+
+            setTimeout(() => {
+                this.remoteCard()
+            }, 100);
+
         },
+
+        remoteCard() {
+            let max_height = 400;
+            let swiper = document.querySelector('.article_swiper .swiper-wrapper');
+
+
+            for (let i of swiper.children) {
+                if(i.offsetHeight > max_height) {
+                    max_height = i.offsetHeight;
+                }
+            }
+
+            for (let i of swiper.children) {
+                i.style.minHeight = max_height + 'px';
+                i.children[0].style.height = max_height + 'px';
+            }
+        }
     },
 
     mounted() {
-        this.getItems()
+        this.getItems();
     }
 };
 </script>

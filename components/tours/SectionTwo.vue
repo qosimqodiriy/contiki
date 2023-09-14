@@ -1,70 +1,70 @@
 <template>
     <div class="bg-white py-40 lg:py-52 xl:py-64 2xl:py-80">
         <div class="my_container mb-40">
-            <div class="flex flex-col lg:flex-row gap-40">
-                <div>
+            <div class="flex flex-col lg:flex-row items-start gap-40">
+                <div class="w-full">
                     <div class="w-full min-h-400 mb-24 relative">
                         <div class="relative w-full h-350 md:h-400 lg:h-500 overflow-hidden">
-                            <img v-for="(img, index) in data" :key="index" class="swiper_img absolute top-0 left-0 w-full h-full max-h-full border border-grey_40 object-cover object-center" :class="active == index ? 'active' : 'not_active'" :src="img" alt="">
+                            <img v-for="(img, index) in item.images" :key="index" :src="`https://contiki.uz/files/${img}`" class="swiper_img absolute top-0 left-0 w-full h-full max-h-full border border-grey_40 object-cover object-center" :class="active == index ? 'active' : 'not_active'" alt="">
                         </div>
 
-                        <div @click="prevClick()" v-if="data && data.length > 1" class="change_btn absolute z-20 top-50% left-10 md:left-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
+                        <div @click="prevClick()" v-if="item.images && item.images.length > 1" class="change_btn absolute z-20 top-50% left-10 md:left-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
                             <div class="change_btn_inner w-full h-full rounded-full flex items-center justify-center">
                                 <img class="w-28 h-28" src="../../assets/icons/arrow-left-white.png" alt="">
                             </div>
                         </div>
 
-                        <div @click="nextClick()" v-if="data && data.length > 1" class="change_btn absolute z-20 top-50% right-10 md:right-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
+                        <div @click="nextClick()" v-if="item.images && item.images.length > 1" class="change_btn absolute z-20 top-50% right-10 md:right-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
                             <div class="change_btn_inner w-full h-full rounded-full flex items-center justify-center">
                                 <img class="w-28 h-28" src="../../assets/icons/arrow-right-white.png" alt="">
                             </div>
                         </div>
                     </div>
 
-                    <h2 class="text-20 xl:text-24 font-prosto_one text-black mb-8">Информация о Шарм-эш-Шейх</h2>
-                    <p class="text-18 font-interfaces text-gren mb-24">Сумма за день  +1 500 000 сум</p>
+                    <h2 class="text-20 xl:text-24 font-prosto_one text-black mb-8">{{ item.title[$i18n.locale] }}</h2>
+                    <p class="text-18 font-interfaces text-gren mb-24">{{ $t('tour_inner_text_1') }}  + {{ formatPrice(item.dailyPrice) }} {{ $t('tour_inner_text_2') }}</p>
 
-                    <p class="text-18 font-interfaces text-grey_64">Туров в Египет предполагают выбор курортов, на которых можно отлично провести время, каждый из них славится определенным видом отдыха, поэтому нужно уделить большое внимание выбору региона. Мы расскажем подробнее о самых популярных, однако, более полную информацию могут вам дать сотрудники нашего турагентства, они подберут самый выгодный и оптимальный вариант путевки в Египет из Шымкента на ваш вкус и кошелек. <br><br> Один из самых старинных курортов Египта – Хургада, который берет свое начало с обычной рабочей деревушки. Этот живописнейший край вовремя заметили, и построили на месте поселения шикарный курорт, который славится великолепными пляжами с чистейшей водой, пологим дном и очень мелким белоснежным песком. Хургада имеет достаточно демократичные цены на путевки, и является наиболее оптимальной точкой для отправления в различные экскурсии, также существует мнение, что и их стоимость здесь гораздо ниже.</p>
+                    <div class="text_editor_inner text-18 font-interfaces text-grey_64" v-html="item.description[$i18n.locale]"></div>
                 </div>
 
                 <div class="w-full lg:w-350 shrink-0 p-16 lg:p-20 xl:p-24 border border-grey_8">
-                    <p class="text-12 text-grey_64 font-interfaces uppercase mb-4">человек</p>
-                    <p class="text-20 lg:text-24 font-prosto_one text-black mb-8">6 400 000 UZS</p>
-                    <p class="text-18 font-interfaces text-grey_64 mb-15">Продолжительность тура: 5 дней</p>
+                    <p class="text-12 text-grey_64 font-interfaces uppercase mb-4">{{ $t('tour_inner_text_3') }}</p>
+                    <p class="text-20 lg:text-24 font-prosto_one text-black mb-8">{{ formatPrice(item.price) }} UZS</p>
+                    <p class="text-18 font-interfaces text-grey_64 mb-15">{{ $t('tour_inner_text_4') }}: {{ item.countDay }} {{ $t('tour_inner_text_5') }}</p>
 
                     <div class="p-16 relative">
                         <div class="bg absolute top-0 left-0 w-full h-full"></div>
-                        <p class="z-10 font-interfaces text-gren">За каждый дополнительный день:</p>
-                        <p class="z-10 font-interfaces text-gren">1 500 000 сум</p>
+                        <p class="z-10 font-interfaces text-gren">{{ $t('tour_inner_text_6') }}:</p>
+                        <p class="z-10 font-interfaces text-gren">{{ formatPrice(item.dailyPrice) }} {{ $t('tour_inner_text_2') }}</p>
                     </div>
 
                     <div class="w-full border-b border-grey_8 my-24"></div>
 
                     <form @submit.prevent="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-x-16">
                         <div class="space-y-8 mb-24">
-                            <p class="text-18 font-interfaces text-black">Ваш имя</p>
+                            <p class="text-18 font-interfaces text-black">{{ $t('tour_inner_text_7') }}</p>
                             <div class="w-full relative">
                                 <input type="text" v-model="name" class="base_input font-inter bg-grey_8" name="name" id="name" required />
-                                <label class="base_label font-inter" for="name">Ваш имя</label>
+                                <label class="base_label font-inter" for="name">{{ $t('tour_inner_text_7') }}</label>
                             </div>
                         </div>
 
                         <div class="space-y-8 mb-24">
-                            <p class="text-18 font-interfaces text-black">Телефон номер</p>
+                            <p class="text-18 font-interfaces text-black">{{ $t('contact_text_6') }}</p>
                             <div class="w-full relative">
                                 <input type="text" v-model="phone" class="base_input font-inter bg-grey_8" name="phone" id="phone" required />
-                                <label class="base_label font-inter" for="phone">Телефон номер</label>
+                                <label class="base_label font-inter" for="phone">{{ $t('contact_text_6') }}</label>
                             </div>
                         </div>
                         <div class="space-y-8 mb-24">
-                            <p class="text-18 font-interfaces text-black">От</p>
+                            <p class="text-18 font-interfaces text-black">{{ $t('tour_inner_text_8') }}</p>
                             <div class="w-full relative">
                                 <input type="date" v-model="data_ot" class="base_input font-inter bg-grey_8" name="lastname" id="lastname" required />
                                 <label class="base_label font-inter" for="lastname">KK/OO/YY</label>
                             </div>
                         </div>
                         <div class="space-y-8 mb-24">
-                            <p class="text-18 font-interfaces text-black">До</p>
+                            <p class="text-18 font-interfaces text-black">{{ $t('tour_inner_text_9') }}</p>
                             <div class="w-full relative">
                                 <input type="date" v-model="data_do" class="base_input font-inter bg-grey_8" name="lastname" id="lastname" required />
                                 <label class="base_label font-inter" for="lastname">KK/OO/YY</label>
@@ -72,7 +72,7 @@
                         </div>
 
                         <button class="w-full md:col-span-2 lg:col-span-1 p-5 border border-orange">
-                            <p class="w-full text-12 md:text-14 lg:text-16 font-prosto_one text-center py-14 lg:py-16 bg-orange text-white">Отправить</p>
+                            <p class="w-full text-12 md:text-14 lg:text-16 font-prosto_one text-center py-14 lg:py-16 bg-orange text-white">{{ $t('tour_inner_text_10') }}</p>
                         </button>
                     </form>
                 </div>
@@ -90,7 +90,6 @@ export default {
         return {
             name: '',
             phone: '',
-            data: [],
             active: 0,
             data_ot: '',
             data_do: '',
@@ -99,13 +98,40 @@ export default {
         }
     },
 
+    props: {
+        item: {
+            type: Object,
+            required: true,
+        },
+    },
+
     methods: {
         prevClick() {
-            this.active = this.active > 0 ? this.active - 1 : this.data.length - 1;
+            this.active = this.active > 0 ? this.active - 1 : this.item.images.length - 1;
         },
 
         nextClick() {
-            this.active = this.active < this.data.length - 1 ? this.active + 1 : 0;
+            this.active = this.active < this.item.images.length - 1 ? this.active + 1 : 0;
+        },
+
+        formatPrice(price) {
+            if (price < 0) {
+                return price;
+            } else {
+                let myArray = [];
+
+                let num = price.toString().split('');
+                num = num.reverse();
+
+                for (let i = 0; i < num.length; i++) {
+                    if (i > 0 && i % 3 == 0) {
+                        myArray.unshift(' ')
+                    }
+                    myArray.unshift(num.slice(i, i + 1))
+                }
+
+                return myArray.join('');
+            }
         },
 
         async onSubmit() {
@@ -131,30 +157,20 @@ export default {
             });
         },
        
-        async getItems() {
-            this.loading = true;
-            const response = await axios.get(`http://176.96.241.124:8081/user/tour?id=${this.$route.params.id}`);
-            this.loading = false;
-            console.log("Tours");
-            console.log(response.data.body);
-            this.data = response.data.body.data;
-            this.data_count = response.data.body.total;
-        },
+        // async getItems() {
+        //     this.loading = true;
+        //     const response = await axios.get(`http://176.96.241.124:8081/user/tour?id=${this.$route.params.id}`);
+        //     this.loading = false;
+        //     console.log("Tours");
+        //     console.log(response.data.body);
+        //     this.data = response.data.body.data;
+        // },
     },
 
     mounted() {
-        // this.getItems()
+        // this.getItems();
 
-        console.log(this.$route.params);
-
-        this.data = [
-            'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'https://images.pexels.com/photos/12764935/pexels-photo-12764935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'https://images.pexels.com/photos/1213447/pexels-photo-1213447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'https://images.pexels.com/photos/1450963/pexels-photo-1450963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'https://images.pexels.com/photos/2453551/pexels-photo-2453551.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            'https://images.pexels.com/photos/4261738/pexels-photo-4261738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        ]
+        console.log(this.item);
     }
 }
 </script>

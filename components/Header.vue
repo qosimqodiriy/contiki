@@ -5,7 +5,7 @@
 
             <div class="flex items-center gap-50">
                 <div class="hidden md:flex items-center gap-30 lg:gap-40 2xl:gap-50">
-                    <NuxtLink to="/" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_1') }}</NuxtLink>
+                    <NuxtLink to="/"><p class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_1') }}</p></NuxtLink>
                     <NuxtLink to="/tours" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_2') }}</NuxtLink>
                     <NuxtLink to="/about" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_3') }}</NuxtLink>
                     <NuxtLink to="/contact" class="text-18 font-interfaces text-white leading-130">{{ $t('page_name_4') }}</NuxtLink>
@@ -15,7 +15,7 @@
                     <div class="flex items-center gap-10 lg:gap-15 xl:gap-24">
                         <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('uz')" :class="$i18n.locale == 'uz' ? 'text-white' : 'text-grey_8 opacity-80'">Uz</p>
                         <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('ru')" :class="$i18n.locale == 'ru' ? 'text-white' : 'text-grey_8 opacity-80'">Ru</p>
-                        <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('en')" :class="$i18n.locale == 'en' ? 'text-white' : 'text-grey_8 opacity-80'">En</p>
+                        <p class="text-16 font-interfaces cursor-pointer leading-130 transition-all duration-200" @click="changeLang('eng')" :class="$i18n.locale == 'eng' ? 'text-white' : 'text-grey_8 opacity-80'">En</p>
                     </div>
     
                     <div @click="burger = !burger" class="block md:hidden p-5 py-6 rounded-4 cursor-pointer active:bg-grey_64">
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Burger -->
-        <div class="burger_div w-full min-h-screen fixed lg:hidden overflow-hidden top-0 right-0 z-40" :class="burger ? 'active' : ''">
+        <div class="burger_div w-full min-h-screen fixed md:hidden overflow-hidden top-0 right-0 z-40" :class="burger ? 'active' : ''">
             <div @click="burger = false" class="w-full z-40 min-h-screen absolute top-0 left-0"></div>
             <div class="w-80% burger_bg bg-Rich-Black z-50 min-h-screen absolute top-0 right-0 px-16 py-50">
 
@@ -98,7 +98,7 @@ export default {
 /* Burger css */
 .burger_div {
     transition: 0.5s ease;
-    transform: translateX(768px);
+    transform: translateX(800px);
 }
 
 .burger_div.active {
