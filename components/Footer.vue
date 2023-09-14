@@ -60,7 +60,7 @@ export default {
     methods: {
         async getItems() {
             this.loading = true;
-            const response = await axios.get('http://176.96.241.124:8081/user/social');
+            const response = await axios.get('https://api.contiki.uz/user/social');
             this.loading = false;
             // console.log("Socials");
             // console.log(response.data.body);

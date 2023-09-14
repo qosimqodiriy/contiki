@@ -76,7 +76,7 @@ export default {
     methods: {
         async getItems() {
             this.loading = true;
-            const response = await axios.get('http://176.96.241.124:8081/user/advantages/all');
+            const response = await axios.get('https://api.contiki.uz/user/advantages/all');
             this.loading = false;
             // console.log("advantages/all");
             // console.log(response.data.body);

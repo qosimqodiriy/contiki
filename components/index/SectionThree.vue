@@ -85,7 +85,7 @@ export default {
     methods: {
         async getItems() {
             this.loading = true;
-            const response = await axios.get('http://176.96.241.124:8081/user/tour/all');
+            const response = await axios.get('https://api.contiki.uz/user/tour/all');
             this.loading = false;
             // console.log("Tour/all");
             // console.log(response.data.body);

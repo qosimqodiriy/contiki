@@ -77,7 +77,7 @@ export default {
     methods: {
         async getItems() {
             this.loading = true;
-            const response = await axios.get('http://176.96.241.124:8081/user/article/all');
+            const response = await axios.get('https://api.contiki.uz/user/article/all');
             this.loading = false;
             // console.log("Article/all");
             // console.log(response.data.body);

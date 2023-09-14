@@ -136,7 +136,7 @@ export default {
 
         async onSubmit() {
             this.loading - true;
-            await axios.post('http://176.96.241.124:8081/user/questions', {
+            await axios.post('https://api.contiki.uz/user/questions', {
                 name: this.name,
                 email: this.email,
                 phone: this.phone,

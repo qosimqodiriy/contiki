@@ -23,7 +23,7 @@ export default {
     methods: {
         async getItems() {
             this.loading = true;
-            const response = await axios.get(`http://176.96.241.124:8081/user/tour?id=${this.$route.params.id}`);
+            const response = await axios.get(`https://api.contiki.uz/user/tour?id=${this.$route.params.id}`);
             this.loading = false;
             // console.log("Tour get id");
             // console.log(response.data);

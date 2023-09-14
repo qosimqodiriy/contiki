@@ -36,7 +36,7 @@ export default {
         async getItems() {
             this.loading = true;
             const { offset = 0 } = this.$route.query
-            const response = await axios.get('http://176.96.241.124:8081/user/tour/all', {
+            const response = await axios.get('https://api.contiki.uz/user/tour/all', {
                 params: {
                     limit: 12,
                     offset: offset,
