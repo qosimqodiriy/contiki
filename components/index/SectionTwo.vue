@@ -1,21 +1,31 @@
 <template>
-    <div class="bg-grey py-40 lg:py-60 xl:py-80">
-        <div class="my_container flex flex-col">
-            <h2 class="text-32 lg:text-40 text-center font-prosto_one mb-8 text-black">{{ $t('text_5') }}</h2>
-            <p class="text-18 text-center text-grey_64">{{ $t('text_6') }}</p>
-            <img class="h-4 lg:h-5 2xl:h-6 mx-auto my-36" src="../../assets/images/line_img.png" alt="">
+    <div class="bg-white py-50 lg:py-62 xl:py-76">
+        <div class="my_container">
+            <div class="flex items-center justify-between gap-20 mb-32">
+                <h2 class="title_text">Most popular trips</h2>
+
+                <div class="flex items-center gap-15 border border-grey_40 p-10 py-5 shrink-0">
+                    <img @click="clickPrev()" class="w-30 h-30 lg:w-36 lg:h-36 p-2 lg:p-4 cursor-pointer" src="../../assets/icons/arrow-left.png" alt="">
+                    <div class="w-1 h-24 bg-grey_40"></div>
+                    <img @click="clickNext()" class="w-30 h-30 lg:w-36 lg:h-36 p-2 lg:p-4 cursor-pointer" src="../../assets/icons/arrow-right.png" alt="">
+                </div>
+            </div>
 
             <swiper 
-                :speed="3000"
-                :freeMode="true" 
-                :spaceBetween="8" 
-                :slidesPerView="1.2" 
-                :slidesPerGroupSkip="1" 
-
+                :speed="1000"
                 :autoplay="{
                     delay: 3700,
                     disableOnInteraction: false,
                 }"
+                :pagination="{
+                    clickable: true,
+                    dynamicBullets: true,
+                }"
+                :loop="true"
+                :navigation="true"
+                :spaceBetween="8" 
+                :slidesPerView="1" 
+                :slidesPerGroupSkip="1" 
 
                 :breakpoints="{
                     '769': {
@@ -35,14 +45,24 @@
                     },
                 }" 
                 :modules="modules" 
-                class="advantage_swiper mySwiper">
+                class="popular_box mySwiper pb-40">
 
-                <swiper-slide v-for="item in data" :key="item.id">
-                    <card-one :item="item" />
+
+
+                <swiper-slide v-if="loading" v-for="item in 5" :key="item">
+                    <skeleton-card />
+                </swiper-slide>
+
+                <swiper-slide v-else v-for="item in data" :key="item.id">
+                    <main-card :item="item" />
                 </swiper-slide>
                 
 
             </swiper>
+
+            <NuxtLink to="/all-trips" class="flex justify-center mt-50">
+                <button class="btn_red">{{ $t('text_9') }}</button>
+            </NuxtLink>
         </div>
     </div>
 </template>
@@ -51,14 +71,19 @@
 <script>
 import 'swiper/css';
 import axios from 'axios'
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Keyboard, FreeMode, Autoplay } from 'swiper/modules';
+import { Keyboard, FreeMode, Autoplay, Navigation, Pagination } from 'swiper/modules';
 
+
+let prev, next;
 export default {
     data() {
         return {
             data: [],
             data_count: 0,
+            loading: true,
         }
     },
     
@@ -69,28 +94,41 @@ export default {
 
     setup() {
         return {
-            modules: [Keyboard, FreeMode, Autoplay ],
+            modules: [Keyboard, FreeMode, Autoplay, Navigation, Pagination ],
         };
     },
 
     methods: {
+        clickPrev() {
+            prev.click();
+        },
+        
+        clickNext() {
+            next.click()
+        },
+
         async getItems() {
             this.loading = true;
-            const response = await axios.get('https://api.contiki.uz/user/advantages/all');
+            const response = await axios.get('https://api.contiki.uz/user/trips');
             this.loading = false;
-            // console.log("advantages/all");
-            // console.log(response.data.body);
-            this.data = response?.data?.body?.data;
-            this.data_count = response?.data?.body?.total;
+
+            console.log("Index: Section two");
+            console.log(response.data);
+
+            this.data = response?.data?.data;
+            this.data_count = response?.data?.total;
+
 
             setTimeout(() => {
                 this.remoteCard()
             }, 100);
         },
 
+
         remoteCard() {
-            let max_height = 300;
-            let swiper = document.querySelector('.advantage_swiper .swiper-wrapper');
+            let max_height = 400;
+            let swiper = document.querySelector('.popular_box .swiper-wrapper');
+
 
             for (let i of swiper.children) {
                 if(i.offsetHeight > max_height) {
@@ -106,12 +144,23 @@ export default {
     },
 
     mounted() {
-        this.getItems()
+        this.getItems();
+
+        setTimeout(() => {
+            let element = document.querySelector('.popular_box');
+            prev = element.children[1];
+            next = element.children[2];
+
+            prev.style.display = 'none';
+            next.style.display = 'none';
+        }, 50);
     }
 };
 </script>
 
 
 <style scoped>
-
+.popular_box {
+    padding-bottom: 50px;
+}
 </style>

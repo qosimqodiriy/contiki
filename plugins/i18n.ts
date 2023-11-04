@@ -8,7 +8,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
         messages: {
             uz: {
                 page_name_1: "Asosiy",
-                page_name_2: "Ekskursiyalar",
+                page_name_2: "Manzillar",
                 page_name_3: "Kompaniya haqida",
                 page_name_4: "Kontaktlar",
                 
@@ -64,7 +64,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
             ru: {
                 page_name_1: "Главная",
-                page_name_2: "Туры",
+                page_name_2: "Destinations",
                 page_name_3: "О нас",
                 page_name_4: "Контакты",
                 
@@ -120,7 +120,7 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
             eng: {
                 page_name_1: "Home",
-                page_name_2: "Tours",
+                page_name_2: "Destinations",
                 page_name_3: "About company",
                 page_name_4: "Contacts",
                 

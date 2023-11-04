@@ -1,101 +1,31 @@
 <template>
-    <div class="bg-white py-56 md:py-64 lg:py-74 xl:py-95 2xl:py-112">
-        <div class="my_container">
-            <h2 class="text-32 lg:text-40 text-center font-prosto_one mb-8 text-black">{{ $t('text_7') }}</h2>
-            <p class="text-18 text-center text-grey_64">{{ $t('text_8') }}</p>
-            <img class="h-4 lg:h-5 2xl:h-6 mx-auto mt-16 lg:mt-24 mb-24 lg:mb-40" src="../../assets/images/line_img.png" alt="">
-
-            <swiper 
-                :speed="1000"
-                :autoplay="{
-                    delay: 3700,
-                    disableOnInteraction: false,
-                }"
-                :pagination="{
-                    clickable: true,
-                }"
-                :navigation="true"
-                :spaceBetween="8" 
-                :slidesPerView="1" 
-                :slidesPerGroupSkip="1" 
-
-                :breakpoints="{
-                    '769': {
-                        spaceBetween: 12,
-                        slidesPerView: 2,
-                        slidesPerGroup: 1,
-                    },
-                    '1025': {
-                        spaceBetween: 16,
-                        slidesPerView: 3,
-                        slidesPerGroup: 1,
-                    },
-                    '1337': {
-                        spaceBetween: 20,
-                        slidesPerView: 4,
-                        slidesPerGroup: 1,
-                    },
-                }" 
-                :modules="modules" 
-                class="mySwiper">
-
-                <swiper-slide v-for="item in data" :key="item.id">
-                    <card-two :item="item" />
-                </swiper-slide>
-                
-
-            </swiper>
-
-            <NuxtLink to="/tours" class="flex justify-center mt-24 lg:mt-48">
-                <div class="w-full md:w-auto p-5 border border-orange">
-                    <p class="text-12 md:text-14 lg:text-16 font-prosto_one text-center py-14 px-52 lg:py-16 lg:px-50 bg-orange text-white">{{ $t('text_9') }}</p>
+    <div class="bg-grey space-y-50 lg:space-y-80 py-100">
+        <div class="container_2">
+            <div class="grid grid-cols-1 lg:grid-cols-7 gap-50 lg:gap-80">
+                <div class="lg:col-span-4">
+                    <p class="text-black text-20 md:text-22 lg:text-24 xl:text-28 font-space_grotesk font-semibold mb-10">"Our journeys go beyond mere destinations – although with us, you'll explore a multitude of captivating places. They're about cherishing every moment of travel. They're about delving deep into each locale, guided by our knowledgeable local experts."</p>
+                    <p class="text-black md:text-17 font-raleway">"They're about embracing diverse cultures and lifestyles, curated through our carefully selected experiences. Most importantly, they're about reveling in the joy of travel and forging enduring connections that endure well past the journey's conclusion: connections with new destinations and kindred spirits equally eager for adventure as you are."</p>
                 </div>
-            </NuxtLink>
+
+                <div class="w-full lg:col-span-3 aspect-5/3 relative">
+                    <!-- <iframe width="1280" height="720" src="https://www.youtube.com/embed/wHYZI1c1lM8?list=RDwHYZI1c1lM8" title="DJ Muratti - Keep On Rising (Remix)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+                    <img class="w-full h-full object-cover object-center" src="../../assets/images/page_bg_img_1.png" alt="">
+                    <img class="w-46 lg:w-56 xl:w-68 absolute top-50% left-50% -translate-x-50% -translate-y-50%" src="../../assets/icons/youtube-red.png" alt="">
+                    <div class="absolute bottom-5 left-0 flex items-center gap-5 py-10 lg:py-15 px-8 lg:px-12 rounded-r-2 bg_watch">
+                        <p class="text-white font-medium font-roboto leading-17">Watch on</p>
+                        <img class="h-18" src="../../assets/icons/youtube-white.png" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <travel-box />
     </div>
 </template>
 
 
-<script>
-import 'swiper/css';
-import axios from 'axios'
-import 'swiper/css/navigation';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Keyboard, FreeMode, Autoplay, Navigation } from 'swiper/modules';
-
-export default {
-    data() {
-        return {
-            data: [],
-            data_count: 0,
-        }
-    },
-    
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-
-    setup() {
-        return {
-            modules: [Keyboard, FreeMode, Autoplay, Navigation ],
-        };
-    },
-
-    methods: {
-        async getItems() {
-            this.loading = true;
-            const response = await axios.get('https://api.contiki.uz/user/tour/all');
-            this.loading = false;
-            // console.log("Tour/all");
-            // console.log(response.data.body);
-            this.data = response?.data?.body?.data;
-            this.data_count = response?.data?.body?.total;
-        },
-    },
-
-    mounted() {
-        this.getItems()
-    }
-};
-</script>
+<style scoped>
+.bg_watch {
+    background: rgba(23, 23, 23, 0.80);
+}
+</style>

@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+
+
+const SectionOne = defineAsyncComponent(() => import('~/components/index/SectionOne.vue'))
+const SectionTwo = defineAsyncComponent(() => import('~/components/index/SectionTwo.vue'))
+const SectionThree = defineAsyncComponent(() => import('~/components/index/SectionThree.vue'))
+
+</script>
+
 <template>
     <Head>
         <Title>Contiki</Title>
@@ -22,29 +32,6 @@
     <section-two />
     <section-three />
     <adventure-box />
-    <section-four />
-    <section-five />
+    <links-box />
+
 </template>
-
-
-
-
-
-<script>
-import SectionOne from '~/components/index/SectionOne.vue'
-import SectionTwo from '~/components/index/SectionTwo.vue'
-import SectionThree from '~/components/index/SectionThree.vue'
-import SectionFour from '~/components/index/SectionFour.vue'
-import SectionFive from '~/components/index/SectionFive.vue'
-
-
-export default {
-    components: {
-        SectionOne,
-        SectionTwo,
-        SectionFour,
-        SectionThree,
-        SectionFive,
-    },
-}
-</script>

@@ -1,7 +1,7 @@
 <template>
     <page-title :name="$t('page_name_3')" :index="3" />
     <section-one />
-    <adventure-box />
+    <links-box />
 </template>
 
 
