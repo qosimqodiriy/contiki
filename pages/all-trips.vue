@@ -84,14 +84,7 @@ onMounted(() => {
     select_name.value = 'All Country';
 
     document.addEventListener('click', (e: any) => {
-
         select_active.value = e.srcElement.classList.contains('select') ? select_active.value ? true : false : false;
-
-        // if(e.srcElement.classList.contains('select')) {
-        //     select_active.value = select_active.value ? true : false;
-        // } else {
-        //     select_active.value = false;
-        // }
     })
 })
 </script>
@@ -100,7 +93,6 @@ onMounted(() => {
 <template>
     <div class="bg-white py-50 pt-30">
         <div class="container_2">
-            <p>loading: {{ data.loading }}</p>
             <div class="flex flex-wrap items-center justify-between mb-24">
                 <p class="text-20 lg:text-24 font-semibold">All Trips</p>
 

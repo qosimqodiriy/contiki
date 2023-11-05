@@ -207,7 +207,7 @@ getItems();
                 <NuxtLink to="/all-trips" @click="closeWindow()" class="text-18 font-semibold underline underline-offset-2">Browse All Trips</NuxtLink>
             </div>
 
-            <div class="w-full h-full flex px-15 py-30">
+            <div class="w-full h-full flex flex-col xl:flex-row gap-y-20 px-15 py-30">
                 <div class="flex-auto px-10">
                     <NuxtLink :to="`/destinations/${data.list[trip_active] ? data.list[trip_active].id : ''}`" @click="closeWindow()" class="continent_link mb-20 flex items-center gap-5">
                         <h2 class="text-18 lg:text-20 font-bold">{{ data.list[trip_active] ? data.list[trip_active].name[$i18n.locale] : '' }} destinations</h2>
@@ -220,7 +220,7 @@ getItems();
                     </div>
                 </div>
 
-                <div class="hidden xl:flex flex-col items-center justify-center xl:min-w-400 2xl:min-w-480 xl:max-w-400 2xl:max-w-600 relative">
+                <div class="hidden lg:flex flex-col items-center justify-center min-h-300 xl:min-w-400 2xl:min-w-480 xl:max-w-400 2xl:max-w-600 relative">
                     <img v-if="data.images && data.images[trip_active]" class="absolute top-0 left-0 w-full h-full max-h-full object-cover object-center" :src="data.images[trip_active]" alt="">
 
                     <div class="relative block p-20 text-white">
