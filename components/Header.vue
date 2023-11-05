@@ -109,7 +109,7 @@ getItems();
                 <div class="hidden md:flex items-center gap-30 lg:gap-40">
                     <div @click="clickWindow()" class="link_box cursor-pointer mt-3">
                         <div class="flex items-center gap-5 pb-1">
-                            <p class="text-18 font-interfaces text-black leading-130">{{ $t('page_name_2') }}</p>
+                            <p class="text-18 font-inter text-black leading-130">{{ $t('page_name_2') }}</p>
                             <img class="w-24 -rotate-90" src="../assets/icons/arrow-left-s-black.png" alt="">
                         </div>
     
@@ -118,11 +118,11 @@ getItems();
     
                     <div class="hidden md:flex items-center gap-30 lg:gap-40 2xl:gap-50 mt-3">
                         <NuxtLink to="/about" @click="closeWindow()" class="link_box">
-                            <p class="text-18 font-interfaces text-black leading-130 mb-1">{{ $t('page_name_3') }}</p>
+                            <p class="text-18 font-inter text-black leading-130 mb-1">{{ $t('page_name_3') }}</p>
                             <div class="link_anime w-full h-2 bg-black"></div>
                         </NuxtLink>
                         <NuxtLink to="/contact" @click="closeWindow()" class="link_box">
-                            <p class="text-18 font-interfaces text-black leading-130 mb-1">{{ $t('page_name_4') }}</p>
+                            <p class="text-18 font-inter text-black leading-130 mb-1">{{ $t('page_name_4') }}</p>
                             <div class="link_anime w-full h-2 bg-black"></div>
                         </NuxtLink>
                     </div>
@@ -132,14 +132,14 @@ getItems();
 
             <div class="flex items-center gap-50 ">
                 <div class="flex items-center gap-16">
-                    <a href="tel:+998990000000" class="hidden lg:block text-16 font-interfaces font-medium text-black leading-130 z-30">+998990000000</a>
+                    <a href="tel:+998990000000" class="hidden lg:block text-16 font-inter font-medium text-black leading-130 z-30">+998990000000</a>
                     <div class="relative">
                         <div @click="lang_active = !lang_active" class="flex items-center cursor-pointer gap-7 relative z-30">
                             <img class="w-24 h-24" src="../assets/icons/global.png" alt="">
     
-                            <p v-if="$i18n.locale == 'uz'" class="text-16 font-interfaces leading-130 text-black">Uz</p>
-                            <p v-else-if="$i18n.locale == 'ru'" class="text-16 font-interfaces leading-130 text-black">Ru</p>
-                            <p v-else-if="$i18n.locale == 'eng'" class="text-16 font-interfaces leading-130 text-black">En</p>
+                            <p v-if="$i18n.locale == 'uz'" class="text-16 font-inter leading-130 text-black">Uz</p>
+                            <p v-else-if="$i18n.locale == 'ru'" class="text-16 font-inter leading-130 text-black">Ru</p>
+                            <p v-else-if="$i18n.locale == 'eng'" class="text-16 font-inter leading-130 text-black">En</p>
                         </div>
 
                         <div class="select_box absolute top-40 right-0 shadow-xl" :class="lang_active ? 'select_active' : 'select_not_active'">
@@ -181,11 +181,11 @@ getItems();
                 <img class="max-h-50 max-w-90% mx-auto mb-30 mt-20" src="../assets/images/logo.png" alt="">
 
                 <div class="flex flex-col gap-16">
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-black" to="/">{{ $t('page_name_1') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-black" to="/destinations">{{ $t('page_name_2') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-black" to="/all-trips">All Trips</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-black" to="/about">{{ $t('page_name_3') }}</NuxtLink>
-                    <NuxtLink @click="burger = false" class="font-interfaces text-center text-18 font-semibold text-black" to="/contact">{{ $t('page_name_4') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-inter text-center text-18 font-semibold text-black" to="/">{{ $t('page_name_1') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-inter text-center text-18 font-semibold text-black" to="/destinations">{{ $t('page_name_2') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-inter text-center text-18 font-semibold text-black" to="/all-trips">All Trips</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-inter text-center text-18 font-semibold text-black" to="/about">{{ $t('page_name_3') }}</NuxtLink>
+                    <NuxtLink @click="burger = false" class="font-inter text-center text-18 font-semibold text-black" to="/contact">{{ $t('page_name_4') }}</NuxtLink>
                 </div>
             </div>
         </div>
