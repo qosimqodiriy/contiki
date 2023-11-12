@@ -49,8 +49,8 @@ const props = defineProps({
 
             <div class="flex flex-wrap items-center justify-between">
                 <div class="">
-                    <p class="leading-120 text-767676 text-13 font-semibold line-through mb-5">$1,945 pp</p>
-                    <p class="leading-120 text-black text-15 font-bold">From $1,556 pp</p>
+                    <p class="leading-120 text-767676 text-13 font-semibold line-through mb-5">${{ item.tourPrice }} pp</p>
+                    <p class="leading-120 text-black text-15 font-bold">From ${{ item.priceWithDiscount }} pp</p>
                 </div>
 
                 <NuxtLink :to="`/tours/${item.id}`" class="py-10 px-20 lg:py-12 lg:px-30 xl:px-35 rounded-30 bg-D73239 text-white text-14 text-center font-bold">VIEW TRIP</NuxtLink>
