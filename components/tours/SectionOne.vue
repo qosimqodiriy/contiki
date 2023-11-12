@@ -3,42 +3,79 @@
         <div class="my_container mb-40">
             <div class="flex flex-col lg:flex-row items-start gap-40">
                 <div class="w-full">
+                    <!-- Swiper -->
                     <div class="w-full min-h-400 mb-24 relative">
                         <div class="relative w-full h-350 md:h-400 lg:h-500 overflow-hidden">
                             <img v-for="(img, index) in item.image" :key="index" :src="`https://contiki.uz/files/${img}`" class="swiper_img absolute top-0 left-0 w-full h-full max-h-full border border-grey_40 object-cover object-center" :class="active == index ? 'active' : 'not_active'" alt="">
+                            <p class="absolute top-50% -translate-y-50% left-0 text-20 md:text-22 lg:text-24 xl:text-32 2xl:text-36 font-bold text-center w-full max-w-70% ml-15% z-10 text-white">{{ item.name ? item.name[$i18n.locale] : '' }}</p>
                         </div>
 
-                        <div @click="prevClick()" v-if="item.image && item.image.length > 1" class="change_btn absolute z-20 top-50% left-10 md:left-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
+                        <div @click="prevClick()" v-if="item.image && item.image.length > 1" class="change_btn absolute z-10 top-50% left-10 md:left-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
                             <div class="change_btn_inner w-full h-full rounded-full flex items-center justify-center">
                                 <img class="w-28 h-28" src="../../assets/icons/arrow-left-s-white.png" alt="">
                             </div>
                         </div>
 
-                        <div @click="nextClick()" v-if="item.image && item.image.length > 1" class="change_btn absolute z-20 top-50% right-10 md:right-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
+                        <div @click="nextClick()" v-if="item.image && item.image.length > 1" class="change_btn absolute z-10 top-50% right-10 md:right-25 -translate-y-50% w-40 md:w-56 h-40 md:h-56 cursor-pointer rounded-full border border-white p-4">
                             <div class="change_btn_inner w-full h-full rounded-full flex items-center justify-center">
                                 <img class="w-28 h-28" src="../../assets/icons/arrow-right-s-white.png" alt="">
                             </div>
                         </div>
                     </div>
 
-                    <h2 class="text-20 xl:text-24 font-prosto_one text-black mb-8">{{ item.title ? item.title[$i18n.locale] : '' }}</h2>
-                    <p class="text-18 font-interfaces text-gren mb-24">{{ $t('tour_inner_text_1') }}  + {{ formatPrice(item.dailyPrice) }} {{ $t('tour_inner_text_2') }}</p>
+                    <!-- // Descriptions // -->
+                    <h2 class="text-20 xl:text-24 font-prosto_one text-black mb-20">{{ item.title ? item.title[$i18n.locale] : '' }}</h2>
+
+                    <!-- Hotel -->
+                    <div v-if="item.hotel && item.hotel.id > 0" class="mb-20">
+                        <p class="mb-5">Hotel:</p>
+                        <div class="flex flex-wrap items-center gap-50">
+                            <div class="flex items-center gap-10">
+                                <img class="w-24 h-24" src="../../assets/icons/hotel.png" alt="">
+                                <p>{{ item.hotel && item.hotel.name ? item.hotel.name[$i18n.locale] : '' }}</p>
+                            </div>
+
+                            <div class="flex items-center gap-10">
+                                <img class="w-22 h-22" src="../../assets/icons/star.png" alt="">
+                                <p>{{ item.hotel && item.hotel.star ? item.hotel.star : '' }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car -->
+                    <div v-if="item.transport" class="mb-20">
+                        <p class="mb-5">Transport:</p>
+                        <div class="flex items-center gap-10">
+                            <img class="w-24 h-24" src="../../assets/icons/taxi.png" alt="">
+                            <p>{{ item.transport }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Visa -->
+                    <div v-if="item.visa && item.visa.isVisa" class="mb-20">
+                        <p class="mb-5">Visa:</p>
+                        <div class="flex items-center gap-10">
+                            <img class="h-30" src="../../assets/icons/visa.png" alt="">
+                            <p>{{ item.visa ? item.visa.text : '' }}</p>
+                        </div>
+                    </div>
 
                     <div class="text_editor_inner text-18 font-interfaces text-grey_64" v-html="item.description ? item.description[$i18n.locale] : ''"></div>
                 </div>
 
+                <!-- Payments -->
                 <div class="w-full lg:w-350 shrink-0 p-16 lg:p-20 xl:p-24 border border-grey_8">
                     <div class="flex flex-nowrap items-center justify-between gap-5 lg:gap-10 mb-15 lg:mb-20 relative">
                         <div class="flex items-center gap-2 2xl:gap-5">
-                            <img class="w-22 h-22" src="../../assets/icons/location.png" alt="">
+                            <img class="w-22 h-22" src="../../assets/icons/calendar-line.png" alt="">
                             <p class="text-14 leading-17 whitespace-nowrap">{{ item.countDay }} Days</p>
                         </div>
                         <div class="flex items-center gap-2 2xl:gap-5">
-                            <img class="w-22 h-22" src="../../assets/icons/location.png" alt="">
+                            <img class="w-22 h-22" src="../../assets/icons/location-line.png" alt="">
                             <p class="text-14 leading-17 whitespace-nowrap">{{ item.placesCount }} Places</p>
                         </div>
-                        <div class="flex items-center gap-2 2xl:gap-5 relative cursor-pointer" @mouseenter="_hover = true" @mouseleave="_hover = false">
-                            <img class="w-22 h-22" src="../../assets/icons/location.png" alt="">
+                        <div class="flex items-center gap-5 2xl:gap-10 relative cursor-pointer" @mouseenter="_hover = true" @mouseleave="_hover = false">
+                            <img class="w-20 h-20" src="../../assets/icons/earth-line.png" alt="">
                             <p class="text-14 leading-17 whitespace-nowrap underline underline-offset-2 hover:no-underline">{{ item.country && item.country.length ? item.country.length : 0 }} Countries</p>
                         </div>
 
@@ -50,7 +87,7 @@
                         </div>
                     </div>
 
-                    <h2 class="text-24 lg:text-26 xl:text-28 font-bold mb-20 lg:mb-30">From $545 pp</h2>
+                    <h2 class="text-24 lg:text-26 xl:text-28 font-bold mb-20 lg:mb-30">From ${{ item.ppriceWithDiscount }} pp</h2>
 
                     <form @submit.prevent="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-x-16">
                         <div class="space-y-8 mb-24">

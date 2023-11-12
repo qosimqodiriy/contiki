@@ -22,16 +22,16 @@ const props = defineProps({
             <p class="text-18 font-space_grotesk font-semibold flex-auto mb-15 line-clamp-2 break-all">{{ item.name ? item.name[$i18n.locale] : '' }}</p>
             
             <div class="flex flex-nowrap items-center justify-between gap-5 lg:gap-10 mb-15 lg:mb-20 relative">
-                <div class="flex items-center gap-2 2xl:gap-5">
-                    <img class="w-22 h-22" src="../assets/icons/location.png" alt="">
+                <div class="flex items-center gap-5 2xl:gap-10">
+                    <img class="w-22" src="../assets/icons/calendar-fill.png" alt="">
                     <p class="text-14 leading-17 whitespace-nowrap">{{ item.countDay }} Days</p>
                 </div>
                 <div class="flex items-center gap-2 2xl:gap-5">
-                    <img class="w-22 h-22" src="../assets/icons/location.png" alt="">
+                    <img class="w-22" src="../assets/icons/location-fill.png" alt="">
                     <p class="text-14 leading-17 whitespace-nowrap">{{ item.placesCount }} Places</p>
                 </div>
-                <div class="flex items-center gap-2 2xl:gap-5 relative cursor-pointer" @mouseenter="_hover = true" @mouseleave="_hover = false">
-                    <img class="w-22 h-22" src="../assets/icons/location.png" alt="">
+                <div class="flex items-center gap-5 2xl:gap-10 relative cursor-pointer" @mouseenter="_hover = true" @mouseleave="_hover = false">
+                    <img class="w-20" src="../assets/icons/earth-fill.png" alt="">
                     <p class="text-14 leading-17 whitespace-nowrap underline underline-offset-2 hover:no-underline">{{ item.country.length ? item.country.length : 0 }} Countries</p>
                 </div>
 

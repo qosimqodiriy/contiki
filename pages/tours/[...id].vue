@@ -34,4 +34,5 @@ getItems();
 
 <template>
     <section-one :item="data.list" />
+    <links-box />
 </template>
